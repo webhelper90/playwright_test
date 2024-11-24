@@ -50,7 +50,7 @@ jobs:
         async function runTest() {
             await driver.init({
                 platformName: 'iOS',
-                platformVersion: '16.0',
+                platformVersion: '18.1',
                 deviceName: 'iPhone 15',
                 app: 'safari', // Safariを起動
             });
