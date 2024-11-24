@@ -37,3 +37,10 @@ jobs:
         echo "    await browser.close();" >> test.js
         echo "})();" >> test.js
         node test.js
+
+
+    - name: Upload screenshot
+      uses: actions/upload-artifact@v4
+      with:
+          name: google-screenshot
+          path: screen_shot/
