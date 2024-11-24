@@ -39,13 +39,13 @@ const devicesList = {
         console.log(`Running tests on ${device.name}`);
 
         // screen_shotディレクトリが存在しない場合は作成する
-        const screenshotDir = path.join(__dirname, 'screen_shot-', matrixOs);
+        const screenshotDir = path.join(__dirname, `screen_shot-${matrixOs}`);
         if (!fs.existsSync(screenshotDir)) {
             fs.mkdirSync(screenshotDir, { recursive: true });
         }
         
         // ビデオを保存するディレクトリを作成
-        const videoDir = path.join(__dirname, 'videos-', matrixOs);
+        const videoDir = path.join(__dirname, `videos-${matrixOs}`);
         if (!fs.existsSync(videoDir)) {
             fs.mkdirSync(videoDir, { recursive: true });
         }
