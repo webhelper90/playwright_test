@@ -1,0 +1,24 @@
+name: Playwright Multi Device Test
+
+on:
+  workflow_dispatch: # 手動実行のトリガー
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.11.0'
+
+      - name: Install Playwright
+        run: |
+          npm install @playwright/test
+          npx playwright install --with-deps
+
+      - name: Run tests on multiple devices
+        run: node runTests.js
