@@ -34,7 +34,13 @@ jobs:
         run: npm config list
 
       - name: Show npm dir
-        run: dir 'C:\\Users\\runneradmin'
+        run: |
+          dir 'C:\\npm\\cache'
+          dir 'C:\\npm\\prefix'
+          dir 'C:\hostedtoolcache\windows\node\22.11.0\'
+          dir 'D:\a\playwright_test\playwright_test'
+          dir 'C:\Users\runneradmin'
+
         
       - name: Install Playwright
         run: |
