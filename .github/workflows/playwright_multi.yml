@@ -34,7 +34,7 @@ jobs:
         run: npm config list
 
       - name: Show npm dir
-        run: dir 'C:\\Users\\runneradmin\\.npm'
+        run: dir 'C:\\Users\\runneradmin'
         
       - name: Install Playwright
         run: |
