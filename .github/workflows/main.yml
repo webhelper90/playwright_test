@@ -19,11 +19,11 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y fonts-noto-cjk
-          
+
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install \
+          sudo apt-get install -y \
               libvpx-dev \
               libevent-dev \
               libopus-dev \
@@ -35,8 +35,11 @@ jobs:
               libharfbuzz-dev \
               libhyphen-dev \
               libgles2-mesa-dev \
-              libx264-dev
-            
+              libx264-dev \
+              libwoff2-dev \
+              libgstreamer-plugins-good1.0-dev \
+              libmanette-0.2-dev
+
       - name: Install Playwright
         run: |
           npm install @playwright/test
