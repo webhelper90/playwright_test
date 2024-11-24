@@ -32,21 +32,23 @@ const devicesList = {
     console.log('Current OS:', os);
     const deviceList = devicesList[os.toLowerCase()] || [];
     
-    // screen_shotディレクトリが存在しない場合は作成する
-    const screenshotDir = path.join(__dirname, 'screen_shot');
-    if (!fs.existsSync(screenshotDir)) {
-        fs.mkdirSync(screenshotDir);
-    }
-    
-    // ビデオを保存するディレクトリを作成
-    const videoDir = path.join(__dirname, 'videos');
-    if (!fs.existsSync(videoDir)) {
-        fs.mkdirSync(videoDir);
-    }
+   
     
     for (const device of deviceList) {
         console.log(`Running tests on ${device.name}`);
 
+        // screen_shotディレクトリが存在しない場合は作成する
+        const screenshotDir = path.join(__dirname, 'screen_shot');
+        if (!fs.existsSync(screenshotDir)) {
+            fs.mkdirSync(screenshotDir);
+        }
+        
+        // ビデオを保存するディレクトリを作成
+        const videoDir = path.join(__dirname, 'videos');
+        if (!fs.existsSync(videoDir)) {
+            fs.mkdirSync(videoDir);
+        }
+            
         const browser = await device.browserType.launch();
         const context = await browser.newContext({
             ...device.options,
