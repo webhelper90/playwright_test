@@ -59,6 +59,7 @@ jobs:
           async function runTest() {
             const driver = await remote({
                 path: '/',
+                hostname: '127.0.0.1',
                 port: 4723,
                 capabilities: {
                     platformName: 'iOS',
