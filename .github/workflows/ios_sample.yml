@@ -19,7 +19,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm install -g appium@2
+          npm install -g appium@2.12.1
           npm install @appium/doctor --location=global
           appium driver install xcuitest
           npm install webdriverio
@@ -63,8 +63,8 @@ jobs:
                 capabilities: {
                   'platformName': 'iOS',
                   'browserName': 'Safari',
-                  'appium:platformVersion': '17.5',
-                  'appium:deviceName': 'iPhone 15',
+                  'appium:platformVersion': '18.1',
+                  'appium:deviceName': 'iPhone 15 Pro',
                   'appium:automationName': 'XCUITest',
                   'appium:noReset': true,
                   'wdio:devtoolsOptions': {
