@@ -23,10 +23,12 @@ jobs:
           npm install @playwright/test
           npx playwright install --with-deps
 
-      - name: Set OS Environment Variable $ Run tests
+      - name: Set OS Environment Variable
         run: | 
           echo "RUNNER_OS_MATRIX=${{ matrix.os }}" >> $GITHUB_ENV
-          node runTests.js
+          
+      - name : Run tests
+        run: node runTests.js
 
       - name: Upload screenshot
         uses: actions/upload-artifact@v4
