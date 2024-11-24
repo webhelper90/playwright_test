@@ -28,7 +28,7 @@ const devicesList = {
 (async () => {
     // OSの判定
     console.log('Environment Variables:', process.env);
-    const os = process.env.GITHUB_RUNNER_OS; // GitHub Actionsの場合
+    const os = process.env.RUNNER_OS; // GitHub Actionsの場合
     console.log('Current OS:', os);
     const deviceList = devicesList[os.toLowerCase()] || [];
     
