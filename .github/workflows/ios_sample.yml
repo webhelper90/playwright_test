@@ -40,13 +40,13 @@ jobs:
       - name: Start Appium server
         run: |
           appium --log-level debug &> appium.log &
-          sleep 60
+          sleep 10
           cat appium.log # ログの内容を確認
 
       - name: Start Simulator
         run: xcrun simctl boot "iPhone 15"
       - name: Sleep for simulator to boot
-        run: sleep 60
+        run: sleep 10
 
         
       - name: Run Test Script
@@ -57,6 +57,7 @@ jobs:
           async function runTest() {
             const driver = await remote({
                 path: '/',
+                host: '127.0.0.1',
                 port: 4723,
                 capabilities: {
                     platformName: 'iOS',
