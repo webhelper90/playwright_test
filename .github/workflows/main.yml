@@ -37,8 +37,8 @@ jobs:
               libgles2-mesa-dev \
               libx264-dev \
               libwoff-dev \
-              libgstreamer-plugins-good1.0-dev \ 
               libwoff1 \
+              libgstreamer-plugins-good1.0-dev \
               libmanette-0.2-dev
           sudo apt-get install -f
 
