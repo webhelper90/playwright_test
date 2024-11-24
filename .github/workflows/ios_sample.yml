@@ -33,11 +33,11 @@ jobs:
       - name: Sleep for simulator to boot
         run: sleep 10
         
-      #- name: Start Appium server
-      #  run: |
-      #    appium --log-level debug &> appium.log &
-      #    sleep 30
-      #    cat appium.log # ログの内容を確認
+      - name: Start Appium server
+        run: |
+          appium --log-level debug &> appium.log &
+          sleep 10
+          cat appium.log # ログの内容を確認
 
       - name: Run Test Script
         run: |
@@ -52,7 +52,7 @@ jobs:
                     platformName: 'iOS',
                     browserName: 'safari',
                     'appium:options': {
-                        platformVersion: '18.0',
+                        platformVersion: 'iOS 17.4',
                         deviceName: 'iPhone 15',
                         automationName: 'XCUITest',
                         automaticBoot: true
