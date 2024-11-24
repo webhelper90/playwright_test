@@ -20,7 +20,7 @@ jobs:
       run: |
         npm install -g appium
         npm install -g appium-doctor
-        npm install -g wd
+        npm install wd
 
     - name: Verify Appium installation
       run: |
