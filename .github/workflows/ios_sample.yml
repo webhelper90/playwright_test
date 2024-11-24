@@ -23,7 +23,8 @@ jobs:
 
     - name: Create and run Playwright test
       run: |
-        echo "const { chromium } = require('playwright');" > test.js
+        echo "const path = require('path');" > test.js
+        echo "const { chromium } = require('playwright');" >> test.js
         echo "(async () => {" >> test.js
         echo "    await require('child_process').execSync('xcrun simctl boot \"iPhone 15\"');" >> test.js
         echo "    const browser = await chromium.launch({ headless: false });" >> test.js
