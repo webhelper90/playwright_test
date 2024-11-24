@@ -1,6 +1,6 @@
 name: iOS Appium Test
 
-on: 
+on:
   push:
     branches:
       - main
@@ -16,56 +16,47 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22.11.0'
+          node-version: '20'  # Node 22はwdとの互換性に問題がある場合があるため、LTSバージョンを使用
 
-      - name: Set DEVELOPER_DIR
-        env:
-          DEVELOPER_DIR: "/Applications/Xcode.app/Contents/Developer"
-        run: |
-          echo "DEVELOPER_DIR is set to $DEVELOPER_DIR"
-          
       - name: Install dependencies
         run: |
-          npm install -g appium@2.0.0  # Appiumのバージョン指定
-          npm install @appium/doctor --location=global
-          npm install wd
+          npm install -g appium@2
+          appium driver install xcuitest
+          npm install webdriverio
 
       - name: Verify Appium installation
         run: appium-doctor
 
       - name: Start Appium server
         run: |
-          appium & 
-          sleep 10  # Wait for Appium server to start
-
-      - name: Start iOS Simulator
-        run: |
-          xcrun simctl boot "iPhone 15"
-          sleep 10  # Wait for the simulator to boot
+          appium &
+          sleep 10
 
       - name: Run Test Script
         run: |
           cat <<EOF > test.js
-          const wd = require('wd');
-          const assert = require('assert');
-
-          const driver = wd.promiseChainRemote('http://localhost:4723/wd/hub');
+          const { remote } = require('webdriverio');
 
           async function runTest() {
-              await driver.init({
-                  platformName: 'iOS',
-                  platformVersion: '18.1',
-                  deviceName: 'iPhone 15',
-                  browserName: 'safari', // 修正
+              const driver = await remote({
+                  path: '/',
+                  port: 4723,
+                  capabilities: {
+                      platformName: 'iOS',
+                      platformVersion: '17.4',
+                      deviceName: 'iPhone 15',
+                      browserName: 'safari',
+                      'appium:automationName': 'XCUITest'
+                  }
               });
 
-              await driver.get('https://www.google.com');
-              await driver.sleep(2000); // ページがロードされるのを待つ
+              await driver.url('https://www.google.com');
+              await driver.pause(2000);
 
               const screenshot = await driver.takeScreenshot();
               require('fs').writeFileSync('screenshot.png', screenshot, 'base64');
 
-              await driver.quit();
+              await driver.deleteSession();
           }
 
           runTest().catch(console.error);
