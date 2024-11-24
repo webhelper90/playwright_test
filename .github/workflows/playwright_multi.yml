@@ -28,6 +28,9 @@ jobs:
         with:
           node-version: '22.11.0'
 
+      - name: Show npm Config
+        run: npm config list
+  
       - name: Install Playwright
         run: |
           npm install @playwright/test
