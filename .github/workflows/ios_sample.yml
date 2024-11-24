@@ -36,6 +36,9 @@ jobs:
         xcrun simctl boot "iPhone 15"
         sleep 10  # Wait for the simulator to boot
 
+    - name: xcrun list
+      run: xcrun simctl list
+    
     - name: Run Test Script
       run: |
         cat <<EOF > test.js
