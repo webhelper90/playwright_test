@@ -11,6 +11,7 @@ jobs:
         os: [macos-latest, windows-latest, ubuntu-latest]
     env:
       RUNNER_OS_MATRIX: ${{ matrix.os }}
+      NPM_CACHE_PATH: ${{ matrix.os == 'windows-latest' && '${{ env.HOME }}\\.npm' || '~/.npm' }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -18,7 +19,7 @@ jobs:
       - name: Cache Node modules
         uses: actions/cache@v4
         with:
-          path: ${{ runner.os == 'Windows' && 'C:\\Users\\runneradmin\\.npm' || '~/.npm' }}
+          path: ${{ env.NPM_CACHE_PATH }}
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-npm-
