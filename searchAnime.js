@@ -10,7 +10,7 @@ const { chromium } = require('playwright');
         await page.goto('https://www.google.com', { waitUntil: 'domcontentloaded' });
 
         // スクリーンショットを取得
-        await page.screenshot({ path: 'google_screenshot1.png' });
+        //await page.screenshot({ path: 'google_screenshot1.png' });
 
         // 検索ボックスが表示されるのを待つ
         await page.waitForSelector('textarea[name="q"]', { timeout: 60000 });
@@ -26,7 +26,7 @@ const { chromium } = require('playwright');
         const results = await page.$$eval('h3', elements => elements.map(el => el.innerText));
 
         // スクリーンショットを取得
-        await page.screenshot({ path: 'google_screenshot2.png' });
+        await page.screenshot({ path: 'google_screenshot.png' });
 
         console.log('検索結果:', results);
     } catch (error) {
