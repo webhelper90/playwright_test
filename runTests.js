@@ -1,7 +1,6 @@
 const { chromium, webkit, firefox, devices } = require('playwright');
 const path = require('path');
 const fs = require('fs');
-const fsPromises = require('fs').promises;
 
 // OSごとのデバイスリスト
 const devicesList = {
@@ -94,7 +93,10 @@ const devicesList = {
             console.error('エラーが発生しました:', error);
         } finally {
             console.log('a');
+            
             const videoPath = await page.video().path(); // ビデオのパスを取得
+            await context.close();
+            
             console.log('b');
             if (videoPath) {
                 
@@ -106,15 +108,14 @@ const devicesList = {
                 console.log('e');
                 // ビデオファイルをリネーム
                 try {
-                    //fs.renameSync(videoPath, newVideoPath); // ビデオファイルをリネーム
-                    await fsPromises.rename(videoPath, newVideoPath); // ビデオファイルをリネーム
+                    fs.renameSync(videoPath, newVideoPath); // ビデオファイルをリネーム
+                    //await fsPromises.rename(videoPath, newVideoPath); // ビデオファイルをリネーム
                     console.log(`ビデオの保存先: ${newVideoPath}`);
                 } catch (renameError) {
                     console.error('ビデオのリネーム中にエラーが発生しました:', renameError);
                 }
             }
             
-            await context.close();
             await browser.close();
         }
     }
