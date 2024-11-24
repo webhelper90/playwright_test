@@ -28,20 +28,17 @@ jobs:
       - name: Verify Appium installation
         run: appium-doctor --ios
 
-      - name: Start Simulator
-        run: xcrun simctl boot "iPhone 15"
-      - name: Sleep for simulator to boot
-        run: sleep 30
+      #- name: Start Simulator
+      #  run: xcrun simctl boot "iPhone 15"
+      #- name: Sleep for simulator to boot
+      #  run: sleep 30
         
-      - name: Start Appium server
-        run: |
-          appium --log-level debug &> appium.log &
-          sleep 30
-          cat appium.log # ログの内容を確認
+      #- name: Start Appium server
+      #  run: |
+      #    appium --log-level debug &> appium.log &
+      #    sleep 30
+      #    cat appium.log # ログの内容を確認
 
-      - name: list
-        run: xcrun simctl list
-        
       - name: Run Test Script
         run: |
           cat <<EOF > test.js
@@ -55,7 +52,7 @@ jobs:
                     platformName: 'iOS',
                     browserName: 'safari',
                     'appium:options': {
-                        platformVersion: '17.4',
+                        platformVersion: '18.0',
                         deviceName: 'iPhone 15',
                         automationName: 'XCUITest',
                         automaticBoot: true
@@ -78,6 +75,9 @@ jobs:
           runTest().catch(console.error);
           EOF
           node test.js
+
+      - name: list
+        run: xcrun simctl list
 
       - name: Upload Screenshot
         uses: actions/upload-artifact@v4
