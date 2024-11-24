@@ -15,7 +15,7 @@ const fs = require('fs');
         }
         
         // Googleにアクセス
-        await page.goto('https://www.google.com', { waitUntil: 'domcontentloaded' });
+        await page.goto('https://www.google.jp', { waitUntil: 'domcontentloaded' });
 
         // 検索ボックスが表示されるのを待つ
         await page.waitForSelector('textarea[name="q"]', { timeout: 30000 });
