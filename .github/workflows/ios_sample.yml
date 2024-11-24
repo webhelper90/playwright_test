@@ -9,9 +9,6 @@ jobs:
   test:
     runs-on: macos-latest
     
-    env: 
-      APPIUM_HOST: "127.0.0.1"
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -41,7 +38,7 @@ jobs:
         
       - name: Start Appium server
         run: |
-          appium --log-level verbose  &> appium.log &
+          appium --log-level debug &> appium.log &
           sleep 10
           cat appium.log # ログの内容を確認
 
@@ -61,7 +58,6 @@ jobs:
 
           async function runTest() {
             const driver = await remote({
-                path: '/',
                 hostname: '127.0.0.1',
                 port: 4723,
                 capabilities: {
