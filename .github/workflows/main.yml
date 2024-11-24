@@ -19,17 +19,18 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install \
-            libvpx-dev \
-            libevent-dev \
-            libopus-dev \
-            libgstreamer1.0-dev \
-            libgstreamer-plugins-base1.0-dev \
-            libflite1 \
-            libavif-dev \
-            libharfbuzz-dev \
-            libhyphen-dev \
-            libgles2-mesa-dev \
-            libx264-dev
+              libvpx-dev \
+              libevent-dev \
+              libopus-dev \
+              libunwind-dev \
+              libgstreamer1.0-dev \
+              libgstreamer-plugins-base1.0-dev \
+              libflite1 \
+              libavif-dev \
+              libharfbuzz-dev \
+              libhyphen-dev \
+              libgles2-mesa-dev \
+              libx264-dev
             
       - name: Install Playwright
         run: |
