@@ -41,7 +41,7 @@ const devicesList = {
         // screen_shotディレクトリが存在しない場合は作成する
         const screenshotDir = path.join(__dirname, 'screen_shot', matrixOs);
         if (!fs.existsSync(screenshotDir)) {
-            fs.mkdirSync(screenshotDir);
+            fs.mkdirSync(screenshotDir, { recursive: true });
         }
         
         // ビデオを保存するディレクトリを作成
