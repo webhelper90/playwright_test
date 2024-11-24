@@ -28,6 +28,14 @@ jobs:
       - name: Verify Appium installation
         run: appium-doctor --ios
 
+      - name: list
+        run: xcrun simctl list
+
+      - name: Start Simulator
+        run: xcrun simctl boot "iPhone 15"
+      - name: Sleep for simulator to boot
+        run: sleep 30
+        
       - name: Start Appium server
         run: |
           appium --log-level debug &> appium.log &
