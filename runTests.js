@@ -79,12 +79,12 @@ const devicesList = {
             await page.waitForSelector(resultSelector);
 
             // 要素をスクロールして表示させる
-            await page.evaluate(selector => {
-                const element = document.querySelector(selector);
-                if (element) {
-                    element.scrollIntoView();
-                }
-            }, resultSelector);
+            //await page.evaluate(selector => {
+            //    const element = document.querySelector(selector);
+            //    if (element) {
+            //        element.scrollIntoView();
+            //    }
+            //}, resultSelector);
                         
             const results = await page.$$eval(resultSelector, elements => elements.map(el => el.innerText));
             console.log('検索結果:', results);
