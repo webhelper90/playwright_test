@@ -8,15 +8,13 @@ on:
 jobs:
   test:
     runs-on: macos-latest
+    
+    env: 
+      APPIUM_HOST: "127.0.0.1"
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Set Env
-        env: 
-          APPIUM_HOST: "127.0.0.1"
-      
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
