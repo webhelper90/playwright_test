@@ -43,6 +43,7 @@ jobs:
           dir 'C:\\npm\\cache'
           dir 'C:\\npm\\prefix'
           dir 'C:\hostedtoolcache\windows\node\22.11.0\'
+          dir 'C:\hostedtoolcache\windows\node\22.11.0\x64'
           dir 'D:\a\playwright_test\playwright_test'
           dir 'C:\Users\runneradmin'
           dir '.\'
