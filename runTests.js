@@ -43,13 +43,24 @@ const devicesList = [
             
             await page.waitForSelector('textarea[name="q"]', { timeout: 30000 });
             await page.fill('textarea[name="q"]', 'アニメ');
+            
             await page.screenshot({ path: path.join(screenshotDir, `${device.name.replace(' ', '_')}_screenshot.png`) });
+            
             await page.keyboard.press('Enter');
             await page.waitForTimeout(2000); // 結果が表示されるのを待つ
 
             // デバイスに応じて検索結果のセレクタを変更
             const resultSelector = device.name.includes('iPhone') || device.name.includes('Pixel') ? 'div[role="link"]' : 'h3';
             await page.waitForSelector(resultSelector);
+
+            // 要素をスクロールして表示させる
+            await page.evaluate(selector => {
+                const element = document.querySelector(selector);
+                if (element) {
+                    element.scrollIntoView();
+                }
+            }, resultSelector);
+                        
             const results = await page.$$eval(resultSelector, elements => elements.map(el => el.innerText));
             console.log('検索結果:', results);
         } catch (error) {
