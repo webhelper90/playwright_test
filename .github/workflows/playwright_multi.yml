@@ -8,8 +8,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        #os: [macos-latest, windows-latest, ubuntu-latest]
-        os: [windows-latest]
+        os: [macos-latest, windows-latest, ubuntu-latest]
+        #os: [windows-latest]
     env:
       RUNNER_OS_MATRIX: ${{ matrix.os }}
       NPM_CACHE_PATH: ${{ matrix.os == 'windows-latest' && 'C:\\npm\\cache' || '~/.npm' }}
@@ -30,37 +30,36 @@ jobs:
         with:
           node-version: '22.11.0'
 
-      - name: Show npm Config
-        run: npm config list
+      #- name: Show npm Config
+      #  run: npm config list
         
       - name: Install Playwright
         run: |
           npm install @playwright/test
           npx playwright install --with-deps
 
-      - name: Show npm dir
-        run: |
-          dir 'C:\\npm\\cache'
-          dir 'C:\\npm\\prefix'
-          dir 'C:\\hostedtoolcache\\windows\\node\\22.11.0'
-          dir 'C:\\hostedtoolcache\\windows\\node\\22.11.0\\x64'
-          dir 'D:\\a\\playwright_test\\playwright_test'
-          dir 'C:\\Users\\runneradmin'
-          dir 'C:\\Users\\runneradmin\\AppData\\Local\\ms-playwright'
-          dir '.\\'
+      #- name: Show npm dir
+      #  run: |
+      #    dir 'C:\\npm\\cache'
+      #    dir 'C:\\npm\\prefix'
+      #    dir 'C:\\hostedtoolcache\\windows\\node\\22.11.0'
+      #    dir 'C:\\hostedtoolcache\\windows\\node\\22.11.0\\x64'
+      #    dir 'D:\\a\\playwright_test\\playwright_test'
+      #    dir 'C:\\Users\\runneradmin'
+      #    dir 'C:\\Users\\runneradmin\\AppData\\Local\\ms-playwright'
+      #    dir '.\\'
 
-      - name: Show npm root g
-        run: |
-          npm root -g
+      #- name: Show npm root g
+      #  run: |
+      #    npm root -g
 
-      - name: Show npm root
-        run: |
-          npm root
+      #- name: Show npm root
+      #  run: |
+      #    npm root
           
-      - name: Show npm cache
-        run: |    
-          npm config get cache
-          
+      #- name: Show npm cache
+      #  run: |    
+      #    npm config get cache
           
       - name : Run tests
         run: node runTests.js
