@@ -28,6 +28,7 @@ const devicesList = {
 (async () => {
     // OSの判定
     const os = process.env.GITHUB_RUNNER_OS; // GitHub Actionsの場合
+    console.log('Current OS:', os);
     const deviceList = devicesList[os.toLowerCase()] || [];
     
     // screen_shotディレクトリが存在しない場合は作成する
