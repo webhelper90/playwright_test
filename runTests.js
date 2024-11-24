@@ -1,6 +1,7 @@
 const { chromium, webkit, firefox, devices } = require('playwright');
 const path = require('path');
 const fs = require('fs');
+const fsPromises = require('fs').promises;
 
 // OSごとのデバイスリスト
 const devicesList = {
@@ -105,7 +106,8 @@ const devicesList = {
                 console.log('e');
                 // ビデオファイルをリネーム
                 try {
-                    fs.renameSync(videoPath, newVideoPath); // ビデオファイルをリネーム
+                    //fs.renameSync(videoPath, newVideoPath); // ビデオファイルをリネーム
+                    await fsPromises.rename(videoPath, newVideoPath); // ビデオファイルをリネーム
                     console.log(`ビデオの保存先: ${newVideoPath}`);
                 } catch (renameError) {
                     console.error('ビデオのリネーム中にエラーが発生しました:', renameError);
