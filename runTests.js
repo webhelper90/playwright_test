@@ -30,19 +30,22 @@ const devicesList = {
     console.log('Environment Variables:', process.env);
     const os = process.env.RUNNER_OS; // GitHub Actionsの場合
     console.log('Current OS:', os);
+
+    const matrixOs = process.env.RUNNER_OS_MATRIX;
+    
     const deviceList = devicesList[os.toLowerCase()] || [];
     
     for (const device of deviceList) {
         console.log(`Running tests on ${device.name}`);
 
         // screen_shotディレクトリが存在しない場合は作成する
-        const screenshotDir = path.join(__dirname, 'screen_shot');
+        const screenshotDir = path.join(__dirname, 'screen_shot', matrixOs);
         if (!fs.existsSync(screenshotDir)) {
             fs.mkdirSync(screenshotDir);
         }
         
         // ビデオを保存するディレクトリを作成
-        const videoDir = path.join(__dirname, 'videos/', os);
+        const videoDir = path.join(__dirname, 'videos/', matrixOs);
         if (!fs.existsSync(videoDir)) {
             fs.mkdirSync(videoDir, { recursive: true });
         }
