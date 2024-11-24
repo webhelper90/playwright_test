@@ -39,17 +39,19 @@ jobs:
           const { remote } = require('webdriverio');
 
           async function runTest() {
-              const driver = await remote({
-                  path: '/',
-                  port: 4723,
-                  capabilities: {
-                      platformName: 'iOS',
-                      platformVersion: '17.4',
-                      deviceName: 'iPhone 15',
-                      browserName: 'safari',
-                      'appium:automationName': 'XCUITest'
-                  }
-              });
+            const driver = await remote({
+                path: '/',
+                port: 4723,
+                capabilities: {
+                    platformName: 'iOS',
+                    browserName: 'safari',
+                    'appium:options': {
+                        platformVersion: '17.4',
+                        deviceName: 'iPhone 15',
+                        automationName: 'XCUITest'
+                    }
+                }
+            });
 
               await driver.url('https://www.google.com');
               await driver.pause(2000);
