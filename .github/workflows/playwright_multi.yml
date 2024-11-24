@@ -9,6 +9,8 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest, windows-latest, ubuntu-latest]
+    env:
+      RUNNER_OS_MATRIX: ${{ matrix.os }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -23,10 +25,6 @@ jobs:
           npm install @playwright/test
           npx playwright install --with-deps
 
-      - name: Set OS Environment Variable
-        run: | 
-          echo "RUNNER_OS_MATRIX=${{ matrix.os }}" >> $GITHUB_ENV
-          
       - name : Run tests
         run: node runTests.js
 
