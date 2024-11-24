@@ -91,9 +91,10 @@ const devicesList = {
         } catch (error) {
             console.error('エラーが発生しました:', error);
         } finally {
-            await page.video().stop(); // ビデオの録画を停止
             const videoPath = await page.video().path(); // ビデオのパスを取得
+            
             if (videoPath) {
+                await page.video().saveAs(videoPath);
                 const newVideoName = `${device.name.replace(' ', '_')}_test_video.webm`; // 任意の名前を設定
                 const newVideoPath = path.join(videoDir, newVideoName);
                 
