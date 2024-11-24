@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm install -g appium
-          npm install -g appium-doctor
+          npm install @appium/doctor --location=global
           npm install wd
 
       - name: Verify Appium installation
