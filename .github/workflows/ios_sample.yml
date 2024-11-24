@@ -21,6 +21,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm install -g appium@2
+          npm install @appium/doctor --location=global
           appium driver install xcuitest
           npm install webdriverio
 
