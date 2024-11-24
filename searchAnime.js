@@ -13,7 +13,7 @@ const { chromium } = require('playwright');
         await page.screenshot({ path: 'google_screenshot1.png' });
 
         // 検索ボックスが表示されるのを待つ
-        await page.waitForSelector('input[name="q"]', { timeout: 60000 });
+        await page.waitForSelector('textarea[name="q"]', { timeout: 60000 });
 
         // 検索ボックスに「アニメ」を入力
         await page.fill('textarea[name="q"]', 'アニメ');
