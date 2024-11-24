@@ -27,21 +27,18 @@ jobs:
         echo "const path = require('path');" > test.js
         echo "const { webkit } = require('playwright');" >> test.js
         echo "(async () => {" >> test.js
-        # シミュレータの起動と起動完了の確認
         echo "    console.log('Starting iOS Simulator...');" >> test.js
         echo "    await require('child_process').execSync('xcrun simctl boot \"iPhone 15\" || echo \"Simulator already booted.\"');" >> test.js
         echo "    console.log('Waiting for iOS Simulator to boot...');" >> test.js
         echo "    await require('child_process').execSync('while [[ \\`xcrun simctl list devices | grep Booted | grep iPhone\\` == \\\"\\\" ]]; do sleep 5; done');" >> test.js
         echo "    console.log('iOS Simulator booted successfully.');" >> test.js
-
-        # Playwright の起動とテスト実行
         echo "    console.log('Launching Playwright...');" >> test.js
-        const browser = await webkit.launch({
-          headless: false,
-          args: [
-            '--use-mobile-user-agent',
-          ]
-        });
+        echo "    const browser = await webkit.launch({" >> test.js
+        echo "        headless: false," >> test.js
+        echo "        args: [" >> test.js
+        echo "            '--use-mobile-user-agent'," >> test.js
+        echo "        ]" >> test.js
+        echo "    });" >> test.js
         echo "    console.log('Playwright launched successfully.');" >> test.js
         echo "    const context = await browser.newContext();" >> test.js
         echo "    const page = await context.newPage();" >> test.js
@@ -54,6 +51,7 @@ jobs:
         echo "    console.log('Test finished.');" >> test.js
         echo "})();" >> test.js
         node test.js
+
 
     - name: Upload screenshot
       uses: actions/upload-artifact@v4
