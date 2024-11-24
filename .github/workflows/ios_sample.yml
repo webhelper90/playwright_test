@@ -48,7 +48,11 @@ jobs:
                     'appium:options': {
                         platformVersion: '17.4',
                         deviceName: 'iPhone 15',
-                        automationName: 'XCUITest'
+                        automationName: 'XCUITest',
+                        automaticBoot: true
+                    },
+                    'wdio:devtoolsOptions': { // WebdriverIO v8以上の場合に追加
+                       headless: false
                     }
                 }
             });
