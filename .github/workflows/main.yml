@@ -45,7 +45,7 @@ jobs:
       - name: Install Playwright
         run: |
           npm install @playwright/test
-          npx playwright install install-deps
+          npx playwright install --with-deps --only-shell
 
       - name: Run Playwright script
         run: node searchAnime.js
