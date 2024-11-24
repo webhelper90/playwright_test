@@ -63,12 +63,10 @@ jobs:
                 capabilities: {
                     platformName: 'iOS',
                     browserName: 'safari',
-                    "appium:options": {
-                        "automationName": "XCUITest",
-                        "platformVersion": "17.5",
-                        "deviceName": "iPhone 15",
-                        "noReset": true
-                    },
+                    "automationName": "XCUITest",
+                    "platformVersion": "17.5",
+                    "deviceName": "iPhone 15",
+                    "noReset": true,
                     'wdio:devtoolsOptions': { // WebdriverIO v8以上の場合に追加
                        headless: false
                     }
