@@ -2,19 +2,34 @@ const { chromium, webkit, firefox, devices } = require('playwright');
 const path = require('path');
 const fs = require('fs');
 
-const devicesList = [
-    { name: 'MacOS Safari', browserType: webkit, options: {} },
-    { name: 'iPhone 12', browserType: webkit, options: devices['iPhone 12'] },
-    { name: 'Pixel 2', browserType: chromium, options: devices['Pixel 2'] },
-    { name: 'Windows Chrome', browserType: chromium, options: { viewport: { width: 1280, height: 720 } } },
-    { name: 'Windows Firefox', browserType: firefox, options: { viewport: { width: 1280, height: 720 } } },
-    { name: 'Linux Chrome', browserType: chromium, options: { viewport: { width: 1280, height: 720 } } },
-    { name: 'Linux Firefox', browserType: firefox, options: { viewport: { width: 1280, height: 720 } } },
-    { name: 'MacOS Chrome', browserType: chromium, options: { viewport: { width: 1280, height: 720 } } },
-    { name: 'MacOS Firefox', browserType: firefox, options: { viewport: { width: 1280, height: 720 } } },
-];
+// OSごとのデバイスリスト
+const devicesList = {
+    macos: [
+        { name: 'MacOS Safari', browserType: webkit, options: {} },
+        { name: 'MacOS Chrome', browserType: chromium, options: { viewport: { width: 1280, height: 720 } } },
+        { name: 'MacOS Firefox', browserType: firefox, options: { viewport: { width: 1280, height: 720 } } },
+    ],
+    windows: [
+        { name: 'Windows Chrome', browserType: chromium, options: { viewport: { width: 1280, height: 720 } } },
+        { name: 'Windows Firefox', browserType: firefox, options: { viewport: { width: 1280, height: 720 } } },
+    ],
+    linux: [
+        { name: 'Linux Chrome', browserType: chromium, options: { viewport: { width: 1280, height: 720 } } },
+        { name: 'Linux Firefox', browserType: firefox, options: { viewport: { width: 1280, height: 720 } } },
+    ],
+    ios: [
+        { name: 'iPhone 12', browserType: webkit, options: devices['iPhone 12'] },
+    ],
+    android: [
+        { name: 'Pixel 2', browserType: chromium, options: devices['Pixel 2'] },
+    ],
+};
 
 (async () => {
+    // OSの判定
+    const os = process.env.GITHUB_RUNNER_OS; // GitHub Actionsの場合
+    const deviceList = devicesList[os.toLowerCase()] || [];
+    
     // screen_shotディレクトリが存在しない場合は作成する
     const screenshotDir = path.join(__dirname, 'screen_shot');
     if (!fs.existsSync(screenshotDir)) {
@@ -27,7 +42,7 @@ const devicesList = [
         fs.mkdirSync(videoDir);
     }
     
-    for (const device of devicesList) {
+    for (const device of deviceList) {
         console.log(`Running tests on ${device.name}`);
 
         const browser = await device.browserType.launch();
