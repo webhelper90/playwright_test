@@ -31,6 +31,10 @@ const devicesList = [
         try {
             // ここに共通のテスト処理を追加
             await page.goto('https://www.google.jp', { waitUntil: 'domcontentloaded' });
+            
+            // スクリーンショットを取得
+            await page.screenshot({ path: path.join(screenshotDir, `google_screenshot1_${device.name}.png`) });
+            
             await page.waitForSelector('textarea[name="q"]', { timeout: 30000 });
             await page.fill('textarea[name="q"]', 'アニメ');
             await page.screenshot({ path: `screen_shot/${device.name.replace(' ', '_')}_screenshot.png` });
