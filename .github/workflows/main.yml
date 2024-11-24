@@ -17,6 +17,24 @@ jobs:
 
       - name: Install dependencies
         run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libwoff2-dev \
+            libvpx-dev \
+            libevent-dev \
+            libopus-dev \
+            libgstreamer1.0-dev \
+            libgstreamer-plugins-base1.0-dev \
+            libflite1 \
+            libavif-dev \
+            libharfbuzz-dev \
+            libhyphen-dev \
+            libmanette-dev \
+            libgles2-mesa-dev \
+            libx264-dev
+            
+      - name: Install Playwright
+        run: |
           npm install @playwright/test
           npx playwright install
 
