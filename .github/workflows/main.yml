@@ -22,3 +22,9 @@ jobs:
 
       - name: Run Playwright script
         run: node searchAnime.js
+
+      - name: Upload screenshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: google-screenshot
+          path: google_screenshot.png
