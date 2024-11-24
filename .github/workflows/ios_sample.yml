@@ -41,15 +41,18 @@ jobs:
         
       - name: Start Appium server
         run: |
-          appium --log-level debug &> appium.log &
+          appium --log-level verbose  &> appium.log &
           sleep 10
           cat appium.log # ログの内容を確認
 
       - name: Start Simulator
         run: xcrun simctl boot "iPhone 15"
+        
       - name: Sleep for simulator to boot
-        run: sleep 10
+        run: sleep 30 
 
+      - name: list
+        run: xcrun simctl list devices
         
       - name: Run Test Script
         run: |
@@ -88,9 +91,6 @@ jobs:
           runTest().catch(console.error);
           EOF
           node test.js
-
-      - name: list
-        run: xcrun simctl list
 
       - name: Upload Screenshot
         uses: actions/upload-artifact@v4
