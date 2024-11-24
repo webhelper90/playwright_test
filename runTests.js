@@ -95,7 +95,7 @@ const devicesList = {
             if (videoPath) {
                 
                 console.log('c');
-                await page.video().saveAs(videoPath);
+                //await page.video().saveAs(videoPath);
                 console.log('d');
                 const newVideoName = `${device.name.replace(' ', '_')}_test_video.webm`; // 任意の名前を設定
                 const newVideoPath = path.join(videoDir, newVideoName);
