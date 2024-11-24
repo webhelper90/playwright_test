@@ -42,7 +42,7 @@ const devicesList = {
         }
         
         // ビデオを保存するディレクトリを作成
-        const videoDir = path.join(__dirname, 'videos/', device.name);
+        const videoDir = path.join(__dirname, 'videos/', os);
         if (!fs.existsSync(videoDir)) {
             fs.mkdirSync(videoDir);
         }
