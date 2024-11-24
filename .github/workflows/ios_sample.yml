@@ -61,17 +61,15 @@ jobs:
                 hostname: '127.0.0.1',
                 port: 4723,
                 capabilities: {
-                    'appium:options': {
-                      'platformName': 'iOS',
-                      'browserName': 'safari',
-                      'platformVersion': '17.5',
-                      'deviceName': 'iPhone 15',
-                      'automationName': 'XCUITest',
-                      'noReset': true
-                    },
-                    'wdio:devtoolsOptions': { // WebdriverIO v8以上の場合に追加
-                       headless: false
-                    }
+                  'platformName': 'iOS',
+                  'browserName': 'Safari',
+                  'appium:platformVersion': '17.5',
+                  'appium:deviceName': 'iPhone 15',
+                  'appium:automationName': 'XCUITest',
+                  'appium:noReset': true,
+                  'wdio:devtoolsOptions': {
+                    headless: false
+                  }
                 }
             });
 
