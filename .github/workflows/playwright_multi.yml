@@ -28,3 +28,11 @@ jobs:
         with:
           name: google-screenshot
           path: screen_shot/
+
+      - name: Upload videos
+        uses: actions/upload-artifact@v4
+        with:
+          name: google-videos
+          path: videos/
+
+          
