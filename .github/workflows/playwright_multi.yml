@@ -31,7 +31,10 @@ jobs:
 
       - name: Show npm Config
         run: npm config list
-  
+
+      - name: Show npm dir
+        run: dir '${{ env.HOME }}\\.npm'
+        
       - name: Install Playwright
         run: |
           npm install @playwright/test
