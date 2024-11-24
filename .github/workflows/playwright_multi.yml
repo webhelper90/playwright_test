@@ -49,10 +49,18 @@ jobs:
           dir 'C:\\Users\\runneradmin\\AppData\\Local\\ms-playwright'
           dir '.\\'
 
-      - name: Show npm root
+      - name: Show npm root g
         run: |
           npm root -g
+
+      - name: Show npm root
+        run: |
           npm root
+          
+      - name: Show npm cache
+        run: |    
+          npm config get cache
+          
           
       - name : Run tests
         run: node runTests.js
