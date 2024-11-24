@@ -48,6 +48,9 @@ jobs:
       - name: Sleep for simulator to boot
         run: sleep 30 
 
+      - name: Appium sever status
+        run: appium
+
       - name: list
         run: xcrun simctl list devices
         
