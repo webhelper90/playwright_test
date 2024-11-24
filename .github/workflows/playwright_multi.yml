@@ -32,6 +32,11 @@ jobs:
 
       - name: Show npm Config
         run: npm config list
+        
+      - name: Install Playwright
+        run: |
+          npm install @playwright/test
+          npx playwright install --with-deps
 
       - name: Show npm dir
         run: |
@@ -41,13 +46,7 @@ jobs:
           dir 'D:\a\playwright_test\playwright_test'
           dir 'C:\Users\runneradmin'
           dir '.\'
-
-        
-      - name: Install Playwright
-        run: |
-          npm install @playwright/test
-          npx playwright install --with-deps
-
+          
       - name : Run tests
         run: node runTests.js
 
