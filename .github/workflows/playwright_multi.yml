@@ -33,11 +33,11 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: google-screenshot-${{ matrix.os }}
-          path: screen_shot/${{ matrix.os }}
+          path: screen-shot-${{ matrix.os }}
 
       - name: Upload videos
         uses: actions/upload-artifact@v4
         with:
           name: google-videos-${{ matrix.os }}
-          path: videos/${{ matrix.os }}
+          path: videos-${{ matrix.os }}
 
