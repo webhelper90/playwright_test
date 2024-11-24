@@ -27,4 +27,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: google-screenshot
-          path: google_screenshot.png
+          path: google_screenshot1.png,google_screenshot2.png
