@@ -18,9 +18,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-cache search woff
-          sudo apt-get install -y \
-            libwoff-dev \
+          sudo apt-get install \
             libvpx-dev \
             libevent-dev \
             libopus-dev \
@@ -28,7 +26,6 @@ jobs:
             libgstreamer-plugins-base1.0-dev \
             libflite1 \
             libavif-dev \
-            libmanette-0.2-dev \
             libharfbuzz-dev \
             libhyphen-dev \
             libgles2-mesa-dev \
