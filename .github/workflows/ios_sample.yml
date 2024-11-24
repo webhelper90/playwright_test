@@ -18,6 +18,12 @@ jobs:
         with:
           node-version: '22.11.0'
 
+      - name: Set DEVELOPER_DIR
+        env:
+          DEVELOPER_DIR: "/Applications/Xcode.app/Contents/Developer"
+        run: |
+          echo "DEVELOPER_DIR is set to $DEVELOPER_DIR"
+          
       - name: Install dependencies
         run: |
           npm install -g appium@2.0.0  # Appiumのバージョン指定
