@@ -91,12 +91,19 @@ const devicesList = {
         } catch (error) {
             console.error('エラーが発生しました:', error);
         } finally {
+            await page.video().stop(); // ビデオの録画を停止
             const videoPath = await page.video().path(); // ビデオのパスを取得
             if (videoPath) {
                 const newVideoName = `${device.name.replace(' ', '_')}_test_video.webm`; // 任意の名前を設定
                 const newVideoPath = path.join(videoDir, newVideoName);
-                fs.renameSync(videoPath, newVideoPath); // ビデオファイルをリネーム
-                console.log(`ビデオの保存先: ${newVideoPath}`);
+                
+                // ビデオファイルをリネーム
+                try {
+                    fs.renameSync(videoPath, newVideoPath); // ビデオファイルをリネーム
+                    console.log(`ビデオの保存先: ${newVideoPath}`);
+                } catch (renameError) {
+                    console.error('ビデオのリネーム中にエラーが発生しました:', renameError);
+                }
             }
             
             await context.close();
