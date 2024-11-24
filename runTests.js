@@ -6,6 +6,10 @@ const devicesList = [
     { name: 'MacOS Safari', browserType: webkit, options: {} },
     { name: 'iPhone 12', browserType: webkit, options: devices['iPhone 12'] },
     { name: 'Pixel 2', browserType: chromium, options: devices['Pixel 2'] },
+    { name: 'Windows Chrome', browserType: chromium, options: { viewport: { width: 1280, height: 720 } } },
+    { name: 'Windows Firefox', browserType: firefox, options: { viewport: { width: 1280, height: 720 } } },
+    { name: 'Linux Chrome', browserType: chromium, options: { viewport: { width: 1280, height: 720 } } },
+    { name: 'Linux Firefox', browserType: firefox, options: { viewport: { width: 1280, height: 720 } } },
 ];
 
 (async () => {
