@@ -30,8 +30,9 @@ jobs:
 
       - name: Start Appium server
         run: |
-          appium &
+          appium --log-level debug &> appium.log &
           sleep 10
+          cat appium.log # ログの内容を確認
 
       - name: Run Test Script
         run: |
