@@ -1,4 +1,4 @@
-const { chromium, webkit, firefox devices } = require('playwright');
+const { chromium, webkit, firefox, devices } = require('playwright');
 const path = require('path');
 const fs = require('fs');
 
