@@ -6,14 +6,22 @@ const fs = require('fs');
     const browser = await chromium.launch();
     const context = await browser.newContext();
     const page = await context.newPage();
-
+    const context = await browser.newContext({
+        recordVideo: {
+          dir: 'screen_shot/', // ビデオファイルを保存するディレクトリ
+          size: { width: 1280, height: 720 }, // ビデオのサイズ
+        },
+    });
+    
     try {
         // screen_shotディレクトリが存在しない場合は作成する
         const screenshotDir = path.join(__dirname, 'screen_shot');
         if (!fs.existsSync(screenshotDir)) {
           fs.mkdirSync(screenshotDir);
         }
+
         
+            
         // Googleにアクセス
         await page.goto('https://www.google.jp', { waitUntil: 'domcontentloaded' });
 
@@ -42,6 +50,7 @@ const fs = require('fs');
     } catch (error) {
         console.error('エラーが発生しました:', error);
     } finally {
+        await context.close();
         await browser.close();
     }
 })();
