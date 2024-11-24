@@ -10,6 +10,8 @@ const devicesList = [
     { name: 'Windows Firefox', browserType: firefox, options: { viewport: { width: 1280, height: 720 } } },
     { name: 'Linux Chrome', browserType: chromium, options: { viewport: { width: 1280, height: 720 } } },
     { name: 'Linux Firefox', browserType: firefox, options: { viewport: { width: 1280, height: 720 } } },
+    { name: 'MacOS Chrome', browserType: chromium, options: { viewport: { width: 1280, height: 720 } } },
+    { name: 'MacOS Firefox', browserType: firefox, options: { viewport: { width: 1280, height: 720 } } },
 ];
 
 (async () => {
