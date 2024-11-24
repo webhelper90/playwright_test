@@ -23,7 +23,6 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-cache search woff
           sudo apt-get install -y \
               libvpx-dev \
               libevent-dev \
@@ -37,9 +36,11 @@ jobs:
               libhyphen-dev \
               libgles2-mesa-dev \
               libx264-dev \
-              libwoff2-dev \
+              libwoff-dev \
+              libwoff1 \
               libgstreamer-plugins-good1.0-dev \
               libmanette-0.2-dev
+          sudo apt-get install -f
 
       - name: Install Playwright
         run: |
