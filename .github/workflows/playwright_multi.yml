@@ -29,12 +29,12 @@ jobs:
       - name: Upload screenshot
         uses: actions/upload-artifact@v4
         with:
-          name: google-screenshot
-          path: screen_shot/
+          name: google-screenshot-${{ matrix.os }}
+          path: screen_shot/${{ matrix.os }}
 
       - name: Upload videos
         uses: actions/upload-artifact@v4
         with:
-          name: google-videos
-          path: videos/
+          name: google-videos-${{ matrix.os }}
+          path: videos/${{ matrix.os }}
 
