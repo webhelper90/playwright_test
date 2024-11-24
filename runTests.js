@@ -32,8 +32,6 @@ const devicesList = {
     console.log('Current OS:', os);
     const deviceList = devicesList[os.toLowerCase()] || [];
     
-   
-    
     for (const device of deviceList) {
         console.log(`Running tests on ${device.name}`);
 
@@ -44,7 +42,7 @@ const devicesList = {
         }
         
         // ビデオを保存するディレクトリを作成
-        const videoDir = path.join(__dirname, 'videos');
+        const videoDir = path.join(__dirname, 'videos/', device.name);
         if (!fs.existsSync(videoDir)) {
             fs.mkdirSync(videoDir);
         }
