@@ -30,7 +30,7 @@ jobs:
         echo "    const context = await browser.newContext();" >> test.js
         echo "    const page = await context.newPage();" >> test.js
         echo "    await page.goto('https://www.google.com');" >> test.js
-        echo "    await page.fill('input[name=\"q\"]', 'アニメ');" >> test.js
+        echo "    await page.fill('textarea[name=\"q\"]', 'アニメ');" >> test.js
         echo "    await page.keyboard.press('Enter');" >> test.js
         echo "    await page.waitForTimeout(5000);" >> test.js
         echo "    await browser.close();" >> test.js
