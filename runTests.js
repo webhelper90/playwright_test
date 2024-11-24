@@ -9,12 +9,19 @@ const devicesList = [
 ];
 
 (async () => {
+    
     // screen_shotディレクトリが存在しない場合は作成する
     const screenshotDir = path.join(__dirname, 'screen_shot');
     if (!fs.existsSync(screenshotDir)) {
       fs.mkdirSync(screenshotDir);
     }
-  
+    
+    // ビデオを保存するディレクトリを作成
+    const videoDir = path.join(__dirname, 'videos');
+    if (!fs.existsSync(videoDir)) {
+        fs.mkdirSync(videoDir);
+    }
+    
     for (const device of devicesList) {
         console.log(`Running tests on ${device.name}`);
 
@@ -22,7 +29,7 @@ const devicesList = [
         const context = await browser.newContext({
             ...device.options,
             recordVideo: {
-                dir: 'screen_shot', // ビデオファイルを保存するディレクトリ
+                dir: videoDir, // ビデオファイルを保存するディレクトリ
                 size: { width: 1280, height: 720 }, // ビデオのサイズ
             },
         });
@@ -45,6 +52,14 @@ const devicesList = [
         } catch (error) {
             console.error('エラーが発生しました:', error);
         } finally {
+            const videoPath = await page.video().path(); // ビデオのパスを取得
+            if (videoPath) {
+                const newVideoName = `${device.name.replace(' ', '_')}_test_video.webm`; // 任意の名前を設定
+                const newVideoPath = path.join(videoDir, newVideoName);
+                fs.renameSync(videoPath, newVideoPath); // ビデオファイルをリネーム
+                console.log(`ビデオの保存先: ${newVideoPath}`);
+            }
+            
             await context.close();
             await browser.close();
         }
