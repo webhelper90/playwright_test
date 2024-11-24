@@ -3,25 +3,22 @@ const path = require('path');
 const fs = require('fs');
 
 (async () => {
+    // screen_shotディレクトリが存在しない場合は作成する
+    const screenshotDir = path.join(__dirname, 'screen_shot');
+    if (!fs.existsSync(screenshotDir)) {
+      fs.mkdirSync(screenshotDir);
+    }
+
     const browser = await chromium.launch();
-    const context = await browser.newContext();
-    const page = await context.newPage();
     const context = await browser.newContext({
         recordVideo: {
           dir: 'screen_shot/', // ビデオファイルを保存するディレクトリ
           size: { width: 1280, height: 720 }, // ビデオのサイズ
         },
     });
-    
-    try {
-        // screen_shotディレクトリが存在しない場合は作成する
-        const screenshotDir = path.join(__dirname, 'screen_shot');
-        if (!fs.existsSync(screenshotDir)) {
-          fs.mkdirSync(screenshotDir);
-        }
+    const page = await context.newPage();
 
-        
-            
+    try {  
         // Googleにアクセス
         await page.goto('https://www.google.jp', { waitUntil: 'domcontentloaded' });
 
