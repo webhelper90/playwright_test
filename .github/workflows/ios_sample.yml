@@ -52,7 +52,7 @@ jobs:
                 platformName: 'iOS',
                 platformVersion: '18.1',
                 deviceName: 'iPhone 15',
-                app: 'safari', // Safariを起動
+                browserName: 'safari', // Safariを起動
             });
 
             await driver.get('https://www.google.com');
