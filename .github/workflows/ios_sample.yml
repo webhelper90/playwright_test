@@ -43,10 +43,10 @@ jobs:
           sleep 10
           cat appium.log # ログの内容を確認
 
-      - name: Start Simulator
-        run: xcrun simctl boot "iPhone 12"
-      - name: Sleep for simulator to boot
-        run: sleep 10
+      #- name: Start Simulator
+      #  run: xcrun simctl boot "iPhone 12"
+      #- name: Sleep for simulator to boot
+      #  run: sleep 10
 
         
       - name: Run Test Script
