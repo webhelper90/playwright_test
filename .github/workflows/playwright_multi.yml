@@ -12,7 +12,7 @@ jobs:
         os: [windows-latest]
     env:
       RUNNER_OS_MATRIX: ${{ matrix.os }}
-      NPM_CACHE_PATH: ${{ matrix.os == 'windows-latest' && 'C:\\hostedtoolcache\\windows\\node\\22.11.0\\x64\\node_modules' || '~/.npm' }}
+      NPM_CACHE_PATH: ${{ matrix.os == 'windows-latest' && 'C:\\hostedtoolcache\\windows\\node\\22.11.0\\x64' || '~/.npm' }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
