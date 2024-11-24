@@ -34,7 +34,7 @@ jobs:
         echo "    console.log('iOS Simulator booted successfully.');" >> test.js
         echo "    console.log('Launching Playwright...');" >> test.js
         echo "    const browser = await webkit.launch({" >> test.js
-        echo "        headless: false," >> test.js
+        echo "        headless: true," >> test.js
         echo "        args: [" >> test.js
         echo "            '--use-mobile-user-agent'," >> test.js
         echo "        ]" >> test.js
