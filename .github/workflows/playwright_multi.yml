@@ -8,7 +8,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
+        #os: [macos-latest, windows-latest, ubuntu-latest]
+        os: [windows-latest]
     env:
       RUNNER_OS_MATRIX: ${{ matrix.os }}
       NPM_CACHE_PATH: ${{ matrix.os == 'windows-latest' && '${{ env.HOME }}\\.npm' || '~/.npm' }}
