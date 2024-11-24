@@ -20,7 +20,7 @@ jobs:
           sudo apt-get update
           sudo apt-cache search woff
           sudo apt-get install -y \
-            libwoff2-dev \
+            libwoff-dev \
             libvpx-dev \
             libevent-dev \
             libopus-dev \
