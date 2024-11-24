@@ -20,7 +20,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm install -g appium
+          npm install -g appium@2.0.0  # Appiumのバージョン指定
           npm install @appium/doctor --location=global
           npm install wd
 
@@ -50,7 +50,7 @@ jobs:
                   platformName: 'iOS',
                   platformVersion: '18.1',
                   deviceName: 'iPhone 15',
-                  browserName: 'safari',
+                  browserName: 'safari', // 修正
               });
 
               await driver.get('https://www.google.com');
