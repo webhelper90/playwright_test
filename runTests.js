@@ -9,11 +9,10 @@ const devicesList = [
 ];
 
 (async () => {
-    
     // screen_shotディレクトリが存在しない場合は作成する
     const screenshotDir = path.join(__dirname, 'screen_shot');
     if (!fs.existsSync(screenshotDir)) {
-      fs.mkdirSync(screenshotDir);
+        fs.mkdirSync(screenshotDir);
     }
     
     // ビデオを保存するディレクトリを作成
@@ -44,10 +43,14 @@ const devicesList = [
             
             await page.waitForSelector('textarea[name="q"]', { timeout: 30000 });
             await page.fill('textarea[name="q"]', 'アニメ');
-            await page.screenshot({ path: `screen_shot/${device.name.replace(' ', '_')}_screenshot.png` });
+            await page.screenshot({ path: path.join(screenshotDir, `${device.name.replace(' ', '_')}_screenshot.png`) });
             await page.keyboard.press('Enter');
-            await page.waitForSelector('h3');
-            const results = await page.$$eval('h3', elements => elements.map(el => el.innerText));
+            await page.waitForTimeout(2000); // 結果が表示されるのを待つ
+
+            // デバイスに応じて検索結果のセレクタを変更
+            const resultSelector = device.name.includes('iPhone') || device.name.includes('Pixel') ? 'div[role="link"]' : 'h3';
+            await page.waitForSelector(resultSelector);
+            const results = await page.$$eval(resultSelector, elements => elements.map(el => el.innerText));
             console.log('検索結果:', results);
         } catch (error) {
             console.error('エラーが発生しました:', error);
