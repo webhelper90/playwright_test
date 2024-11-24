@@ -23,7 +23,7 @@ jobs:
           npm install @playwright/test
           npx playwright install --with-deps
 
-      - name: Run tests on multiple devices
+      - name: Run tests
         run: node runTests.js
 
       - name: Upload screenshot
@@ -38,4 +38,3 @@ jobs:
           name: google-videos
           path: videos/
 
-          
