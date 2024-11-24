@@ -1,0 +1,36 @@
+name: iOS Simulator Test
+
+on:
+  workflow_dispatch: # 手動実行のトリガー
+
+jobs:
+  test:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16' # 使用したいNode.jsのバージョン
+
+    - name: Install Playwright
+      run: npm install playwright
+
+    - name: Create and run Playwright test
+      run: |
+        echo "const { chromium } = require('playwright');" > test.js
+        echo "(async () => {" >> test.js
+        echo "    await require('child_process').execSync('xcrun simctl boot \"iPhone 14\"');" >> test.js
+        echo "    const browser = await chromium.launch({ headless: false });" >> test.js
+        echo "    const context = await browser.newContext({ viewport: { width: 375, height: 812 } });" >> test.js
+        echo "    const page = await context.newPage();" >> test.js
+        echo "    await page.goto('https://www.google.com');" >> test.js
+        echo "    await page.fill('input[name=\"q\"]', 'アニメ');" >> test.js
+        echo "    await page.keyboard.press('Enter');" >> test.js
+        echo "    await page.waitForTimeout(5000);" >> test.js
+        echo "    await browser.close();" >> test.js
+        echo "})();" >> test.js
+        node test.js
