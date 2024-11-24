@@ -63,9 +63,9 @@ jobs:
                 capabilities: {
                   'platformName': 'iOS',
                   'browserName': 'Safari',
-                  'appium:udid': '2D55B0A5-502A-4582-8F6F-21098605A194',
+                  'appium:udid': 'C90DEAD9-99C8-48EB-9DFC-3351097792A8',
                   'appium:platformVersion': '18.1',
-                  'appium:deviceName': 'iPhone 15 Pro',
+                  'appium:deviceName': 'iPhone 15',
                   'appium:automationName': 'XCUITest',
                   'appium:noReset': true,
                   'wdio:devtoolsOptions': {
