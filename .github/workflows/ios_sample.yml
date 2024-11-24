@@ -27,6 +27,8 @@ jobs:
         echo "const { webkit } = require('playwright');" >> test.js
         echo "(async () => {" >> test.js
         echo "    await require('child_process').execSync('xcrun simctl boot \"iPhone 15\"');" >> test.js
+
+        echo "    await require('child_process').execSync('xcrun simctl list');" >> test.js
         echo "    const browser = await webkit.launch({ headless: false });" >> test.js
         echo "    const context = await browser.newContext();" >> test.js
         echo "    const page = await context.newPage();" >> test.js
