@@ -62,7 +62,7 @@ jobs:
                     platformName: 'iOS',
                     browserName: 'safari',
                     'appium:options': {
-                        platformVersion: 'iOS 17.4',
+                        platformVersion: '18.1',
                         deviceName: 'iPhone 15',
                         automationName: 'XCUITest',
                         automaticBoot: true
