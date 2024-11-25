@@ -34,7 +34,7 @@ jobs:
           cat appium.log
 
       - name: Start Simulator
-        run: xcrun simctl boot "iPad mini (6th generation)"
+        run: xcrun simctl boot "iPhone 15"
         
       - name: Sleep for simulator to boot
         run: sleep 30
@@ -58,7 +58,7 @@ jobs:
                 'capabilities': {
                   'browserName': 'safari',
                   'platformName': 'iOS',
-                  'appium:deviceName': 'iPad mini (6th generation)',
+                  'appium:deviceName': 'iPhone 15)',
                   'appium:platformVersion': '18.1',
                   'appium:automationName': 'Safari',
                   'safari:useSimulator': true
