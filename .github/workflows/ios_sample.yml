@@ -49,7 +49,7 @@ jobs:
         run: sleep 30 
 
       - name: Appium sever status
-        run: appium
+        run: appium --help
 
       - name: list
         run: xcrun simctl list devices
