@@ -15,45 +15,36 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'  # Node 22はwdとの互換性に問題がある場合があるため、LTSバージョンを使用
+          node-version: '20'
 
       - name: Install dependencies
         run: |
           npm install -g appium@2.12.1
           npm install @appium/doctor --location=global
-          appium driver install xcuitest
+          appium driver install safari
           npm install webdriverio
-      #    brew install ffmpeg
-      #    npm install -g mjpeg-consumer
-      #    brew tap lyft/formulae
-      #    brew install set-simulator-location
-      #    brew tap facebook/fb
-      #    brew install idb-companion
-      #    brew tap wix/brew
-      #    brew install applesimutils
-      #    brew install ios-deploy
 
       - name: Verify Appium installation
-        run: appium-doctor --ios
-        
+        run: appium-doctor --safari
+
       - name: Start Appium server
         run: |
           appium --log-level debug &> appium.log &
           sleep 10
-          cat appium.log # ログの内容を確認
+          cat appium.log
 
       - name: Start Simulator
         run: xcrun simctl boot "iPhone 15"
         
       - name: Sleep for simulator to boot
-        run: sleep 30 
+        run: sleep 30
 
-      - name: Appium sever status
+      - name: Appium server status
         run: appium --help
 
-      - name: list
+      - name: List devices
         run: xcrun simctl list devices
-        
+
       - name: Run Test Script
         run: |
           cat <<EOF > test.js
@@ -65,16 +56,12 @@ jobs:
                 'hostname': '127.0.0.1',
                 'port': 4723,
                 'capabilities': {
+                  'browserName': 'safari',
                   'platformName': 'iOS',
-                  'browserName': 'Safari',
-                  'appium:udid': 'C90DEAD9-99C8-48EB-9DFC-3351097792A8',
-                  'appium:platformVersion': '18.1',
                   'appium:deviceName': 'iPhone 15',
-                  'appium:automationName': 'XCUITest',
-                  'appium:noReset': true,
-                  'wdio:devtoolsOptions': {
-                    'headless': false
-                  }
+                  'appium:platformVersion': '18.1',
+                  'appium:automationName': 'Safari',
+                  'safari:useSimulator': true
                 }
             });
 
