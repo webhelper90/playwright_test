@@ -34,7 +34,7 @@ jobs:
           cat appium.log
 
       - name: Start Simulator
-        run: xcrun simctl boot "iPhone 15"
+        run: xcrun simctl boot "iPad mini (6th generation)"
         
       - name: Sleep for simulator to boot
         run: sleep 30
