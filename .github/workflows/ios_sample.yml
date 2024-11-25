@@ -66,7 +66,13 @@ jobs:
             });
 
               await driver.url('https://www.google.com');
-              await driver.pause(2000);
+              await driver.waitUntil(async () => {
+                  const readyState = await driver.execute(() => document.readyState);
+                  return readyState === 'complete'; // ページの読み込み状態が「complete」であることを確認
+              }, {
+                  timeout: 10000,
+                  timeoutMsg: 'ページが完全に読み込まれませんでした'
+              });
 
               const screenshot = await driver.takeScreenshot();
               require('fs').writeFileSync('screenshot.png', screenshot, 'base64');
