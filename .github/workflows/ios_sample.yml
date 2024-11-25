@@ -25,7 +25,7 @@ jobs:
           npm install webdriverio
 
       - name: Verify Appium installation
-        run: appium-doctor --safari
+        run: appium-doctor --ios
 
       - name: Start Appium server
         run: |
