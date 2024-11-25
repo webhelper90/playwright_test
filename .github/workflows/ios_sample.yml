@@ -58,7 +58,7 @@ jobs:
                 'capabilities': {
                   'browserName': 'safari',
                   'platformName': 'iOS',
-                  'appium:deviceName': 'iPhone 15',
+                  'appium:deviceName': 'iPad mini (6th generation)',
                   'appium:platformVersion': '18.1',
                   'appium:automationName': 'Safari',
                   'safari:useSimulator': true
