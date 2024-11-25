@@ -22,7 +22,7 @@ jobs:
           npm install -g appium@2.12.1
           npm install @appium/doctor --location=global
           appium driver install safari
-          npm install webdriverio
+          npm install webdriverio@8.40.6
 
       - name: Verify Appium installation
         run: appium-doctor --ios
